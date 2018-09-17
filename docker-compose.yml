@@ -1,0 +1,15 @@
+version: '3'
+services:
+  elk:
+    image: "sebp/elk:632"
+    container_name: elk_main
+    ports: 
+      - "9200:9200"
+      - "5044:5044"
+      - "5601:5601"
+  beats:
+    build:
+      context: ./beats/
+    volumes:
+      - /var/log/:/var/log
+    container_name: elk_beats
